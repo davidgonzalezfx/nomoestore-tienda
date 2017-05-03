@@ -1,0 +1,60 @@
+extends layout
+
+block content
+	.container
+		h1.page-header Add some device to sell:
+		form(name="agregarItem" action="/admin" method="post").form-group
+			.input-group
+				span.input-group-addon 1
+				input(type="text" placeholder="Name" name="name").form-control
+			.input-group
+				span.input-group-addon 2
+				input(type="text" placeholder="Type" name="type").form-control
+			.input-group
+				span.input-group-addon 3
+				input(type="text" placeholder="Image" name="img").form-control
+			.input-group
+				span.input-group-addon 4
+				input(type="text" placeholder="Color" name="color").form-control
+			.input-group
+				span.input-group-addon 5
+				input(type="text" placeholder="Price" name="price").form-control
+			br
+			input(type="submit" value="Add now!")
+		
+		hr
+
+		.panel.panel-default
+			.panel-heading 
+				h4 Chat app
+			.panel-body 
+				.container Send some messages here...
+			
+			ul(id="chatlist").list-group				 
+			.container
+				br
+				form(action="", id="chatting").container
+					.form-group
+						label Envía un mensaje...
+						input(type="text", id="m", placeholder="message").form-control.chat
+						br
+						button(id="mes").btn.btn-primary Enviar
+
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js")
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+
+		script.
+			var socket = io()
+			$('#chatting').submit(function(){
+				socket.emit('send', $('#m').val())  
+				$('#m').val('')
+				return false
+			})
+
+			socket.on('show', function(msg){
+				$('#chatlist').prepend($('<li>').addClass('list-group-item').text('- '+ msg));
+			})
+
+
+
+			 

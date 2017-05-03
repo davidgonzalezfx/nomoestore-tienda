@@ -1,0 +1,15 @@
+body {
+	padding: 20px;
+}
+
+.aHead, .aHead:hover {
+	text-decoration: none;
+	color: white;
+}
+
+.device {
+	margin: auto;
+}
+.chat {
+	width: auto;
+}

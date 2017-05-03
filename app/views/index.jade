@@ -1,0 +1,31 @@
+extends layout
+
+block content
+	.container
+		.jumbotron.main.showcase
+			h1 Welcome to NoMoEStore
+			p You are in a luxurious store build with NodeJs, MongoDb and Express. br Here you can find the best devices for you and your kin
+			a(href="/computers").aHead
+				button.btn.btn-lg.btn-primary See the computers we have for you
+		h2 All our devices:
+		hr
+		.row
+			- for (var i = 0; i < items.length ; ++i) {
+					div.col-md-4
+						.panel.panel-default
+							.panel-heading
+								h3.panel-title Device: #{items[i].name}
+							.panel-body
+								img(src="img/#{items[i].img}", width="200").device
+								hr
+								h4 Caracteristicas:
+								ul.list-group
+									li.list-group-item Color: #{items[i].color}
+									li.list-group-item Price: #{items[i].price}
+					
+			- }
+		hr
+
+	
+
+						
